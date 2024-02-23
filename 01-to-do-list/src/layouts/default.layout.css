@@ -1,0 +1,12 @@
+#layout {
+  background-color: yellowgreen;
+}
+
+#header {
+  background-color: aqua;
+  padding: 16px 20px;
+}
+
+#footer {
+  background-color: red;
+}

@@ -1,11 +1,5 @@
 import { createContext, useContext, useState } from "react";
-
-interface ToDo {
-  id: number;
-  title: string;
-  content: string;
-  isComplete: boolean;
-}
+import { ToDo } from "../types/toDo.type";
 
 type ToDosContextType = {
   toDos: ToDo[];
