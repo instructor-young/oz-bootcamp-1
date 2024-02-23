@@ -1,57 +1,23 @@
 import { ChangeEventHandler, useState } from "react";
 import { Link } from "react-router-dom";
-
-interface ToDo {
-  id: number;
-  title: string;
-  content: string;
-  isComplete: boolean;
-}
-
-type ToDoList = ToDo[];
-
-const initialToDoList: ToDoList = [
-  {
-    id: 1,
-    title: "아침 밥 먹기",
-    content: "500kcal 든든히 먹기",
-    isComplete: false,
-  },
-  {
-    id: 2,
-    title: "점심 밥 먹기",
-    content: "700kcal 든든히 먹기",
-    isComplete: false,
-  },
-  {
-    id: 3,
-    title: "저녁 밥 먹기",
-    content: "400kcal 든든히 먹기",
-    isComplete: false,
-  },
-  {
-    id: 4,
-    title: "야식 먹기",
-    content: "1000kcal 든든히 먹기",
-    isComplete: false,
-  },
-];
+import { useToDos } from "../contexts/todos.context";
 
 function HomePage() {
-  const [toDoList, setToDoList] = useState<ToDoList>(initialToDoList);
+  const { toDos, setToDos } = useToDos();
+
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>("");
 
   const handleClickAdd = () => {
     const newToDo = {
-      id: toDoList.length + 1,
+      id: toDos.length + 1,
       title,
       content,
       isComplete: false,
     };
-    const newToDoList = [...toDoList, newToDo];
+    const newToDoList = [...toDos, newToDo];
 
-    setToDoList(newToDoList);
+    setToDos(newToDoList);
     setTitle("");
     setContent("");
   };
@@ -65,21 +31,21 @@ function HomePage() {
   };
 
   const handleClickDelete = (toDoId: number) => {
-    const newToDoList = toDoList.filter((toDo) => {
+    const newToDoList = toDos.filter((toDo) => {
       return toDo.id !== toDoId;
     });
 
-    setToDoList(newToDoList);
+    setToDos(newToDoList);
   };
 
   const handleClickToggleIsComplete = (toDoId: number) => {
-    const targetToDo = toDoList.find((toDo) => toDo.id === toDoId);
+    const targetToDo = toDos.find((toDo) => toDo.id === toDoId);
     if (!targetToDo) return;
 
     targetToDo.isComplete = !targetToDo.isComplete;
-    const newToDoList = [...toDoList];
+    const newToDoList = [...toDos];
 
-    setToDoList(newToDoList);
+    setToDos(newToDoList);
   };
 
   return (
@@ -98,7 +64,7 @@ function HomePage() {
       <hr />
 
       <ul>
-        {toDoList.map((toDo) => (
+        {toDos.map((toDo) => (
           <li key={toDo.id}>
             <Link to={`/todos/${toDo.id}`}>
               <span
@@ -108,8 +74,20 @@ function HomePage() {
               >
                 {toDo.title}
               </span>
-              <button onClick={() => handleClickDelete(toDo.id)}>삭제</button>
-              <button onClick={() => handleClickToggleIsComplete(toDo.id)}>
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleClickDelete(toDo.id);
+                }}
+              >
+                삭제
+              </button>
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleClickToggleIsComplete(toDo.id);
+                }}
+              >
                 {toDo.isComplete ? "완료 취소" : "완료"}
               </button>
             </Link>

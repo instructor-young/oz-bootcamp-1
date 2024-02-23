@@ -1,30 +1,22 @@
-# React + TypeScript + Vite
+리엑트에서의 전역 상태 관리
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+1. props drilling -> 조금 ㅁㅅ한 방법
+2. 3rd party library
+   - redux
+   - recoil
+   - zustand
+   - react-query
+3. Context API (리엑트 내장 기능)
+   - 어떤 한계가 있어요.
+   - 3rd party library들을 사용하면 극복이 되요.
+   - 그래서, 여전히 3rd party library
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Context API
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- 컴포넌트 트리 내에서, 특정한 상태를 공유하고 싶은 범위를 정해서, 그 부분을 Context로 묶고, 상태를 공유
+- 컨텍스트 API 작성법
+  1. 만든다 -> createContext
+  2. 사용한다 -> useContext
+  3. 범위 정해서 값을 내려준다. -> <Provider value={value}></Provider>
