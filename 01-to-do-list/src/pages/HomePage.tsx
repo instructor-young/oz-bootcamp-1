@@ -4,7 +4,6 @@ import { useToDos } from "../contexts/todos.context";
 
 function HomePage() {
   const { toDos, setToDos } = useToDos();
-
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>("");
 
