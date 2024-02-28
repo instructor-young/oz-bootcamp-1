@@ -1,12 +1,14 @@
 import Header from "@/app/(root)/_components/Header";
+import ReactQueryProvider from "@/react-query/client.react-query";
 
 function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div>
-      <Header />
-      {children}
-      <footer className="border-t">푸터임</footer>
-    </div>
+    <ReactQueryProvider>
+      <div>
+        <Header />
+        {children}
+      </div>
+    </ReactQueryProvider>
   );
 }
 
