@@ -15,6 +15,11 @@ function Header() {
             </li>
           </ul>
         </nav>
+
+        <div className="ml-auto flex gap-x-4">
+          <Link href="/log-in">로그인</Link>
+          <Link href="/sign-up">회원가입</Link>
+        </div>
       </div>
     </header>
   );

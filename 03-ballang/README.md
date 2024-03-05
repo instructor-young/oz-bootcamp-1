@@ -73,3 +73,11 @@ Server State Management Library
 
 3. Devtools
    https://tanstack.com/query/latest/docs/framework/react/devtools
+
+데이터 가져오기 -> query -> useQuery
+(Read)
+
+데이터 변경하기 -> mutate -> useMutation
+(Create, Update, Delete)
+
+-> CRUD

@@ -10,4 +10,14 @@
   .button {
     @apply border bg-gray-100 hover:bg-slate-200 active:bg-gray-400 text-black p-2;
   }
+  .button:disabled {
+    @apply bg-red-500;
+  }
+
+  .input {
+    @apply border border-gray-400 px-3 py-1.5 rounded focus:outline-sky-400;
+  }
+  .input:disabled {
+    @apply bg-red-500;
+  }
 }
