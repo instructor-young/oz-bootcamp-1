@@ -1,4 +1,5 @@
 const http = require("http");
+const path = require("path");
 
 // 1. 만든다.(create)
 const server = http.createServer((req, res) => {
@@ -18,12 +19,10 @@ const server = http.createServer((req, res) => {
         </body>
       </html>
     `);
-  } else if (url === "/cool") {
-    res.write("Cool~");
-  } else if (url === "/bad") {
-    res.write("Bad~");
-  } else if (url === "/posts") {
+  } else if (url === "/posts" && req.method === "GET") {
     res.write('{ "title": "wow", "content": "cool~" }');
+  } else if (url === "/posts" && req.method === "POST") {
+    // 포스트 생성하는 작업~
   } else {
     res.writeHead(404);
     res.write("Not Found");
@@ -36,3 +35,8 @@ const server = http.createServer((req, res) => {
 server.listen(7777, () => {
   console.log("서버...작동...시작...이제...듣고...있음...");
 });
+
+// path    HTTP Methods
+// ---------------
+// /posts  GET   -> 전체 포스트 돌려주기
+// /posts  POST  -> 포스트 하나를 생성해 주는 거고
