@@ -13,3 +13,8 @@ export function authReducer(prevState = { isLoggedIn: false }, action) {
 
   return newState;
 }
+
+// 공장은 상태를 작업지시서에 따라 변경하기 위해서 존재
+
+// 이전 상태를 알아야, 그걸 바탕으로 다음 상태로 만들어 줄 수 있겠죠 -> "state" || "prevState"
+// 작업지시서가 필요하겠죠 -> "action"
