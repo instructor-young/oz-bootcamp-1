@@ -7,11 +7,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body style={{ backgroundColor: "skyblue" }}>
-        <header>이것이 헤더다</header>
-        {children}
-        <footer>이것이 푸터다</footer>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

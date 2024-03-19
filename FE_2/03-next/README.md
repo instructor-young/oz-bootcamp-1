@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Next.js
 
-## Getting Started
+The React Framework for the Web
 
-First, run the development server:
+Q. 프레임워크란 무엇일까?
+한 단어로? 제어역전
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+# Next.js를 왜 쓰는가?
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+(쌩)리액트만을 쓸 경우에는 CSR로 인해서 SEO에 어려움이 있음
+-> SSR의 필요성이 대두됨
+-> SSR을 쉽게 그리고 Robust하게 쓸 수 있도록 Next.js라는 프레임워크가 만들어짐
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+최근에 Next.js를 설명할 때
+-> "Fullstack Framework" 넥스트 개발자들의 욕심~
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+# Next.js의 App Router에는 다양한 컨벤션들이 있다.
 
-## Learn More
+1. App 디렉터리 아래에 있는 디렉터리 경로가 그대로 url이 된다.
+2. 해당 **디렉터리의** 경로에 대응되는 페이지를 만드려면 `page.tsx`
+3. 해당 디렉터리의 경로와 그 하위 디렉터리 경로에 대응되는 레이아웃을 만드려면 `layout.tsx`
+4. 동적라우팅(다이내믹 라우팅)에 해당하는 경로를 만들 때에는 대괄호를 사용한다.
+5. app 디렉터리 하위에서 경로에 포함되지 않는 디렉터리를 만드는 방법이 두 가지가 있다.
+   1. 디렉터리명 맨 앞에 언더스코어(\_)를 붙이는 것 -> 앱라우팅 시스템에서 제외됨.
+   2. 디렉터리명을 소괄호로 감싸는 것 -> 앱라우팅 시스템 내에 여전히 존재함. 즉, layout.tsx나 page.tsx를 사용할 수 있음
+6. Next에서는 모든 컴포넌트는 기본적으로 SSR 된다.ㅓ
+   1. 다음의 경우들은 SSR을 사용할 수 없다.
+      1. 브라우저에서만 실행 가능한 코드를 포함한 컴포넌트 ex) window, 이벤트들(onBlabla), react hook을 사용할 때
+   2. 클라이언트 컴포넌트
+      1. 위의 SSR을 사용할 수 없는 경우들은 클라이언트 컴포넌트로 만들어 줘야 한다.
+      2. 파일의 최상단에 'use client'; 라고 적어주는 것.이 끝
 
-To learn more about Next.js, take a look at the following resources:
+https://nextjs.org/docs/app/building-your-application/routing/colocation#safe-colocation-by-default
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# 2024-03-19
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. app 디렉터리 하위의 디렉터리 경로들이 그 자체로 url이 되지만, 예외가 있다.
+   1. 디렉터리명 가장 앞에 언더스코어를 붙였을 경우: 디렉터리 자체를 라우팅 시스템에서 제외하고 싶을 때. ex) \_components, \_utils
+   2. 디렉터리명을 소괄호로 감쌌을 경우 -> 경로에서는 제외하지만 라우팅 시스템에 여전히 포함시키고 싶을 경우. ex) 경로 상에 특별한 레이어를 하나 추가해 두고 싶을 때. providers,
+2. `use client`의 사용
+   - 브라우저에서만 돌아갈 수 있는 코드를 컴포넌트 내에 작성했을 경우
+   - hook을 사용했을 경우
+   - Next를 사용하다가 정말 많은 에러를 만나게 될 텐데, 일단 가장 먼저 의심해야 할 것이 내가 어딘가에 `use client`를 빼먹은 것은 아닐까
